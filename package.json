@@ -1,0 +1,29 @@
+{
+  "name": "asn1-packer",
+  "version": "1.0.0",
+  "description": "An ASN.1 packer in less than 100 lines of Vanilla JavaScript, part of the Bluecrypt suite.",
+  "homepage": "https://git.coolaj86.com/coolaj86/asn1-packer.js",
+  "main": "asn1-packer.js",
+  "scripts": {
+    "prepare": "uglifyjs asn1-packer.js > asn1-packer.min.js"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.coolaj86.com/coolaj86/asn1-packer.js"
+  },
+  "keywords": [
+    "zero-dependency",
+    "ASN.1",
+    "X.509",
+    "PEM",
+    "DER",
+    "asn1",
+    "x509",
+    "VanillaJS"
+  ],
+  "author": "AJ ONeal <coolaj86@gmail.com> (https://coolaj86.com/)",
+  "license": "MPL-2.0"
+}

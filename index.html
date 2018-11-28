@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ASN.1 Packer - Bluecrypt</title>
+  <style>
+    textarea {
+      width: 42em;
+      height: 10em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Bluecrypt ASN.1 Packer</h1>
+
+  <input type="text" class="js-type" placeholder="PEM header (i.e. PUBLIC KEY)" value="PUBLIC KEY">
+  <br>
+  <textarea class="js-input" placeholder="Paste a PEM here">[
+  48,
+  [
+    [
+      48,
+      [
+        [
+          6,
+          "2a8648ce3d0201"
+        ],
+        [
+          6,
+          "2a8648ce3d030107"
+        ]
+      ]
+    ],
+    [
+      3,
+      "04213d5258bc6c69c3e2139675ea3928a409fcffef39acc8e0c82a24ae78c37ede98fd89c0e00e74c997bb0a716ca9e0dca673dbb9b3fa72962255c9debcd218ca"
+    ]
+  ]
+]</textarea>
+
+  <pre><code class="js-hex"> </code></pre>
+
+  <pre><code class="js-pem"> </code></pre>
+
+  <br>
+  <p>Made with <a href="https://git.coolaj86.com/coolaj86/asn1-packer/">asn1-packer.js</a></p>
+
+  <script src="./asn1-packer.js"></script>
+  <script>
+    var $input = document.querySelector('.js-input');
+
+    function convert() {
+      console.log('keyup');
+      var json;
+
+      try {
+        var typ = document.querySelector('.js-type').value;
+        var text = document.querySelector('.js-input').value;
+        var arr = JSON.parse(text);
+        var hex = ASN1.pack(arr);
+        var buf = Enc.hexToBuf(hex);
+        var pem = PEM.packBlock({ type: typ, bytes: buf });
+        document.querySelector('.js-hex').innerText = hex
+          .match(/.{2}/g).join(' ').match(/.{1,24}/g).join(' ').match(/.{1,50}/g).join('\n');
+        document.querySelector('.js-pem').innerText = pem;
+      } catch(e) {
+        pem = { error: { message: e.message } };
+        document.querySelector('.js-pem').innerText = JSON.stringify(pem);
+      }
+    }
+
+    $input.addEventListener('keyup', convert);
+    convert();
+  </script>
+</body>
+</html>
