@@ -1,3 +1,7 @@
+# Mirror of [asn1-packer.js](https://git.coolaj86.com/coolaj86/asn1-packer.js)
+
+Official Repository: <https://git.coolaj86.com/coolaj86/asn1-packer.js>
+
 # Bluecrypt ASN.1 Packer
 
 An ASN.1 builder in less than 100 lines of Vanilla JavaScript,
